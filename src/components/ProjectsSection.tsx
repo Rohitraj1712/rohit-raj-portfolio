@@ -39,28 +39,34 @@ const ProjectsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
-            className="glass-card rounded-xl p-6 flex flex-col hover:card-glow transition-shadow duration-300 group"
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="glass-card rounded-xl p-6 flex flex-col hover:card-glow transition-shadow duration-300 group cursor-pointer relative overflow-hidden"
           >
+            {/* Top gradient line on hover */}
+            <div className="absolute top-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ backgroundImage: "var(--gradient-primary)" }} />
+            
             <div className="flex items-center justify-between mb-4">
-              <FolderGit2 size={28} className="text-primary" />
+              <motion.div whileHover={{ rotate: 10 }} transition={{ type: "spring" }}>
+                <FolderGit2 size={28} className="text-primary" />
+              </motion.div>
               <div className="flex gap-3 text-muted-foreground">
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="#" className="hover:text-primary transition-colors hover:scale-110 inline-block">
                   <Github size={18} />
                 </a>
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="#" className="hover:text-primary transition-colors hover:scale-110 inline-block">
                   <ExternalLink size={18} />
                 </a>
               </div>
             </div>
-            <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+            <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
               {p.title}
             </h3>
             <p className="text-sm text-muted-foreground flex-1">{p.desc}</p>
             <div className="mt-4 flex gap-2">
-              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono">
+              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
                 React
               </span>
-              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono">
+              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
                 Node.js
               </span>
             </div>
