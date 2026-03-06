@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Code2 } from "lucide-react";
+import { ArrowDown, Code2, Download } from "lucide-react";
 
 const titles = ["Web Developer", "Full Stack Engineer", "CS Student", "Problem Solver"];
 
