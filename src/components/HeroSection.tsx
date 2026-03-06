@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Code2 } from "lucide-react";
+import { ArrowDown, Code2, Download } from "lucide-react";
 
 const titles = ["Web Developer", "Full Stack Engineer", "CS Student", "Problem Solver"];
 
@@ -80,6 +80,14 @@ const HeroSection = () => {
               className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-medium border border-border text-foreground hover:bg-secondary transition-all hover:scale-105"
             >
               Contact Me
+            </a>
+            <a
+              href="/Rohit_Raj_Resume.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-medium border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all hover:scale-105"
+            >
+              <Download size={16} />
+              Resume
             </a>
           </div>
         </motion.div>
