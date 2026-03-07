@@ -2,18 +2,9 @@ import { motion } from "framer-motion";
 import { FolderGit2, Github, ExternalLink } from "lucide-react";
 
 const projects = [
-  {
-    title: "Portfolio Website",
-    desc: "A modern personal portfolio website built with React and Tailwind CSS to showcase skills and projects.",
-  },
-  {
-    title: "Web Application Project",
-    desc: "A full stack web application with user authentication, CRUD operations, and a responsive UI.",
-  },
-  {
-    title: "Backend API Project",
-    desc: "A RESTful API built with Node.js and Express, featuring database integration and secure endpoints.",
-  },
+  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
+  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
+  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
 ];
 
 const ProjectsSection = () => (
