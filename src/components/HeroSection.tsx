@@ -4,30 +4,39 @@ import { ArrowDown, Code2, Download } from "lucide-react";
 
 const titles = ["Web Developer", "Full Stack Engineer", "CS Student", "Problem Solver"];
 
-const useTypingEffect = (strings: string[], typingSpeed = 100, deletingSpeed = 60, pauseTime = 1800) => {
+const useTypingEffect = (strings: string[], typingSpeed = 80, deletingSpeed = 40, pauseTime = 2000) => {
   const [text, setText] = useState("");
-  const [index, setIndex] = useState(0);
+  const [stringIndex, setStringIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const current = strings[index];
+    const current = strings[stringIndex];
+
     const timeout = setTimeout(() => {
       if (!isDeleting) {
-        setText(current.slice(0, text.length + 1));
-        if (text.length + 1 === current.length) {
+        const nextChar = charIndex + 1;
+        setText(current.slice(0, nextChar));
+        if (nextChar === current.length) {
           setTimeout(() => setIsDeleting(true), pauseTime);
+        } else {
+          setCharIndex(nextChar);
         }
       } else {
-        setText(current.slice(0, text.length - 1));
-        if (text.length === 0) {
+        const nextChar = charIndex - 1;
+        setText(current.slice(0, Math.max(0, nextChar)));
+        if (nextChar <= 0) {
           setIsDeleting(false);
-          setIndex((i) => (i + 1) % strings.length);
+          setCharIndex(0);
+          setStringIndex((prev) => (prev + 1) % strings.length);
+        } else {
+          setCharIndex(nextChar);
         }
       }
     }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, index, strings, typingSpeed, deletingSpeed, pauseTime]);
+  }, [charIndex, isDeleting, stringIndex, strings, typingSpeed, deletingSpeed, pauseTime]);
 
   return text;
 };
