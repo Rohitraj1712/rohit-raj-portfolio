@@ -1,10 +1,9 @@
-import { Github, Linkedin, Trophy } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 
 const links = [
   { icon: Github, href: "https://github.com/Rohitraj1712", label: "GitHub" },
   { icon: Linkedin, href: "https://linkedin.com/in/rohit-raj-734143323", label: "LinkedIn" },
-  { icon: Trophy, href: "https://leetcode.com/u/Rohit_Raj17/", label: "LeetCode" },
-  { icon: Trophy, href: "https://www.hackerrank.com/profile/rohitjais1712", label: "HackerRank" },
+  { icon: Instagram, href: "https://www.instagram.com/ris_rohitt_jaiswal._?igsh=MXIydnY3ajAwYXA0cA==", label: "Instagram" },
 ];
 
 const Footer = () => (
