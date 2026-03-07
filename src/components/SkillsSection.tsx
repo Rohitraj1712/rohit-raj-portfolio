@@ -10,7 +10,7 @@ const skillGroups = [
   {
     icon: Globe,
     title: "Web Technologies",
-    skills: ["JavaScript", "Node.js", "HTML", "CSS"],
+    skills: ["JavaScript", "ReactJS", "Node.js", "HTML", "CSS"],
   },
   {
     icon: Wrench,
