@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
-import { FolderGit2, Github, ExternalLink } from "lucide-react";
+import { FolderGit2, Github, ExternalLink, Bot } from "lucide-react";
 
 const projects = [
-  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
-  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
-  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!" },
+  {
+    title: "SolveBot – AI Math Solver",
+    desc: "An AI-powered web application that solves mathematical problems and provides step-by-step explanations for students.",
+    tags: ["Python", "Streamlit"],
+    github: "https://github.com/Rohitraj1712/Solvebot",
+    live: "https://solvebot.streamlit.app",
+    icon: Bot,
+  },
+  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!", tags: ["React", "Node.js"], github: "#", live: "#" },
+  { title: "Coming Soon", desc: "Exciting project in the works. Stay tuned!", tags: ["React", "Node.js"], github: "#", live: "#" },
 ];
 
 const ProjectsSection = () => (
@@ -25,7 +32,7 @@ const ProjectsSection = () => (
       <div className="grid md:grid-cols-3 gap-6">
         {projects.map((p, i) => (
           <motion.div
-            key={p.title}
+            key={i}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -33,18 +40,17 @@ const ProjectsSection = () => (
             whileHover={{ y: -8, scale: 1.02 }}
             className="glass-card rounded-xl p-6 flex flex-col hover:card-glow transition-shadow duration-300 group cursor-pointer relative overflow-hidden"
           >
-            {/* Top gradient line on hover */}
             <div className="absolute top-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ backgroundImage: "var(--gradient-primary)" }} />
-            
+
             <div className="flex items-center justify-between mb-4">
               <motion.div whileHover={{ rotate: 10 }} transition={{ type: "spring" }}>
-                <FolderGit2 size={28} className="text-primary" />
+                {p.icon ? <p.icon size={28} className="text-primary" /> : <FolderGit2 size={28} className="text-primary" />}
               </motion.div>
               <div className="flex gap-3 text-muted-foreground">
-                <a href="#" className="hover:text-primary transition-colors hover:scale-110 inline-block">
+                <a href={p.github} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:scale-110 inline-block" onClick={(e) => e.stopPropagation()}>
                   <Github size={18} />
                 </a>
-                <a href="#" className="hover:text-primary transition-colors hover:scale-110 inline-block">
+                <a href={p.live} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:scale-110 inline-block" onClick={(e) => e.stopPropagation()}>
                   <ExternalLink size={18} />
                 </a>
               </div>
@@ -53,13 +59,12 @@ const ProjectsSection = () => (
               {p.title}
             </h3>
             <p className="text-sm text-muted-foreground flex-1">{p.desc}</p>
-            <div className="mt-4 flex gap-2">
-              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-                React
-              </span>
-              <span className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-                Node.js
-              </span>
+            <div className="mt-4 flex gap-2 flex-wrap">
+              {p.tags.map((tag) => (
+                <span key={tag} className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground font-mono group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
         ))}
