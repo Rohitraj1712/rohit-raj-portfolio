@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FolderGit2, Github, ExternalLink, Bot, Chrome, Star, Clock, BarChart3, Move, Save } from "lucide-react";
+import { FolderGit2, Github, ExternalLink, Bot, Chrome, Clock, BarChart3, Move, Save, Sparkles, ListChecks, Zap, Palette } from "lucide-react";
 
 const projects = [
   {
@@ -9,7 +9,6 @@ const projects = [
     github: "https://github.com/Rohitraj1712/Reel-counter-extension",
     live: "",
     icon: Chrome,
-    featured: true,
     features: [
       { icon: Clock, text: "Daily viewing limits" },
       { icon: BarChart3, text: "Weekly analytics" },
@@ -19,11 +18,17 @@ const projects = [
   },
   {
     title: "SolveBot – AI Math Solver",
-    desc: "An AI-powered web application that solves mathematical problems and provides step-by-step explanations for students.",
-    tags: ["Python", "Streamlit"],
+    desc: "An AI-powered web application that helps students solve mathematical problems by generating accurate, step-by-step explanations through an intuitive and responsive interface.",
+    tags: ["Python", "Streamlit", "Google Gemini AI"],
     github: "https://github.com/Rohitraj1712/Solvebot",
     live: "https://solvebot.streamlit.app",
     icon: Bot,
+    features: [
+      { icon: Sparkles, text: "AI-powered solving" },
+      { icon: ListChecks, text: "Step-by-step answers" },
+      { icon: Zap, text: "Fast Gemini responses" },
+      { icon: Palette, text: "Clean responsive UI" },
+    ],
   },
 ];
 
@@ -51,21 +56,15 @@ const ProjectsSection = () => (
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
             whileHover={{ y: -8, scale: 1.02 }}
-            className={`glass-card rounded-xl p-6 flex flex-col hover:card-glow transition-shadow duration-300 group cursor-pointer relative overflow-hidden ${p.featured ? "md:col-span-2 border-primary/30" : ""}`}
+            className="glass-card rounded-xl p-6 flex flex-col hover:card-glow transition-shadow duration-300 group cursor-pointer relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ backgroundImage: "var(--gradient-primary)" }} />
-            {p.featured && (
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/30">
-                <Star size={12} className="fill-primary" />
-                Featured
-              </div>
-            )}
 
             <div className="flex items-center justify-between mb-4">
               <motion.div whileHover={{ rotate: 10 }} transition={{ type: "spring" }}>
-                {p.icon ? <p.icon size={28} className="text-primary" /> : <FolderGit2 size={28} className="text-primary" />}
+                <p.icon size={28} className="text-primary" />
               </motion.div>
-              <div className={`flex gap-3 text-muted-foreground ${p.featured ? "mr-24" : ""}`}>
+              <div className="flex gap-3 text-muted-foreground">
                 <a href={p.github} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:scale-110 inline-block" onClick={(e) => e.stopPropagation()}>
                   <Github size={18} />
                 </a>
@@ -79,7 +78,7 @@ const ProjectsSection = () => (
             <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
               {p.title}
             </h3>
-            <p className="text-sm text-muted-foreground flex-1">{p.desc}</p>
+            <p className="text-sm text-muted-foreground">{p.desc}</p>
 
             {p.features && (
               <div className="mt-4 grid grid-cols-2 gap-2">
@@ -100,21 +99,31 @@ const ProjectsSection = () => (
               ))}
             </div>
 
-            {p.featured && (
-              <div className="mt-5 flex gap-3">
+            <div className="mt-auto pt-5 flex gap-3 flex-wrap">
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-primary-foreground transition-all hover:scale-105"
+                style={{ backgroundImage: "var(--gradient-primary)" }}
+              >
+                <Github size={14} />
+                View Source Code
+              </a>
+              {p.live && (
                 <a
-                  href={p.github}
+                  href={p.live}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-primary-foreground transition-all hover:scale-105"
-                  style={{ backgroundImage: "var(--gradient-primary)" }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-border text-foreground hover:bg-secondary transition-all hover:scale-105"
                 >
-                  <Github size={14} />
-                  View Source Code
+                  <ExternalLink size={14} />
+                  Live Demo
                 </a>
-              </div>
-            )}
+              )}
+            </div>
           </motion.div>
         ))}
       </div>
