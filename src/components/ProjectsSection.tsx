@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { FolderGit2, Github, ExternalLink, Bot, Chrome, Clock, BarChart3, Move, Save, Sparkles, ListChecks, Zap, Palette } from "lucide-react";
+import { FolderGit2, Github, ExternalLink, Bot, Chrome, Clock, BarChart3, Move, Save, Sparkles, ListChecks, Zap, Palette, Search, Brain, Database, ShieldCheck, CreditCard, Workflow } from "lucide-react";
 
 const projects = [
   {
     title: "Reel Counter – Productivity Chrome Extension",
+    badge: "",
     desc: "A Chrome extension that tracks Instagram Reels and YouTube Shorts consumption, helping users manage screen time through daily limits, analytics, and productivity-focused insights.",
     tags: ["JavaScript", "HTML", "CSS", "Chrome API", "Storage API"],
     github: "https://github.com/Rohitraj1712/Reel-counter-extension",
@@ -18,6 +19,7 @@ const projects = [
   },
   {
     title: "SolveBot – AI Math Solver",
+    badge: "",
     desc: "An AI-powered web application that helps students solve mathematical problems by generating accurate, step-by-step explanations through an intuitive and responsive interface.",
     tags: ["Python", "Streamlit", "Google Gemini AI"],
     github: "https://github.com/Rohitraj1712/Solvebot",
@@ -28,6 +30,40 @@ const projects = [
       { icon: ListChecks, text: "Step-by-step answers" },
       { icon: Zap, text: "Fast Gemini responses" },
       { icon: Palette, text: "Clean responsive UI" },
+    ],
+  },
+  {
+    title: "ProductLens AI – AI Product Intelligence Platform",
+    badge: "UniHack Challenge",
+    desc: "An AI-powered product intelligence platform that transforms sparse industrial product information into structured, validated, evidence-backed data. It combines AI reasoning, grounded web research, and deterministic validation to deliver reliable product insights at scale.",
+    tags: ["Python", "Streamlit", "Groq AI", "Tavily Search", "Pandas"],
+    github: "https://github.com/Rohitraj1712/ProductLens-ai",
+    live: "https://pro-ductlensai.streamlit.app/",
+    icon: Search,
+    features: [
+      { icon: Brain, text: "AI product enrichment" },
+      { icon: Search, text: "Grounded web research" },
+      { icon: Database, text: "Structured data validation" },
+      { icon: ShieldCheck, text: "Confidence & traceability" },
+      { icon: ListChecks, text: "Conflict review" },
+      { icon: Workflow, text: "CSV & Excel export" },
+    ],
+  },
+  {
+    title: "RecoverAI – Autonomous AI Revenue Recovery",
+    badge: "Razorpay AI Buildathon",
+    desc: "An AI-powered revenue recovery platform that detects failed payments and abandoned checkouts, recommends recovery actions, and runs controlled workflows. Probabilistic AI reasoning works with deterministic policy controls for reliable, verified payment recovery.",
+    tags: ["Next.js", "TypeScript", "Groq AI", "Razorpay Webhooks", "Vitest"],
+    github: "https://github.com/Rohitraj1712/recover-ai",
+    live: "https://recover-ai-blush.vercel.app/",
+    icon: CreditCard,
+    features: [
+      { icon: Brain, text: "Payment failure analysis" },
+      { icon: Sparkles, text: "Recovery recommendations" },
+      { icon: Workflow, text: "Controlled workflows" },
+      { icon: ShieldCheck, text: "Financial guardrails" },
+      { icon: CreditCard, text: "Verified payment webhooks" },
+      { icon: BarChart3, text: "Audit logs & metrics" },
     ],
   },
 ];
@@ -47,10 +83,10 @@ const ProjectsSection = () => (
         </h2>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 md:auto-rows-fr gap-6">
         {projects.map((p, i) => (
           <motion.div
-            key={i}
+            key={p.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -78,6 +114,12 @@ const ProjectsSection = () => (
             <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
               {p.title}
             </h3>
+            {p.badge && (
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="rounded bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">Featured</span>
+                <span className="rounded bg-secondary px-2 py-1 text-xs text-secondary-foreground">{p.badge}</span>
+              </div>
+            )}
             <p className="text-sm text-muted-foreground">{p.desc}</p>
 
             {p.features && (
